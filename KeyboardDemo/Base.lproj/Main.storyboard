@@ -1,24 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6Ov-hX-tz9"/>
+                        <viewControllerLayoutGuide type="bottom" id="eyk-bO-joF"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Mircea" translatesAutoresizingMaskIntoConstraints="NO" id="A2N-rj-NaR">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AyU-Dm-Uq4">
+                                <rect key="frame" x="7" y="20" width="246" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="246" id="KGa-fC-FRE"/>
+                                    <constraint firstAttribute="height" constant="30" id="ObK-9J-0uS"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RAx-Mb-BD8">
+                                <rect key="frame" x="282" y="20" width="66" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7PA-pn-1tf"/>
+                                    <constraint firstAttribute="width" constant="66" id="dYR-4D-8y4"/>
+                                </constraints>
+                                <state key="normal" title="Resign"/>
+                                <connections>
+                                    <action selector="resignKeyboard:" destination="BYZ-38-t0r" eventType="touchUpInside" id="om4-5o-I11"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <constraints>
+                            <constraint firstItem="A2N-rj-NaR" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="0RT-Fu-2s2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RAx-Mb-BD8" secondAttribute="trailing" constant="11" id="1mr-C8-2eg"/>
+                            <constraint firstItem="AyU-Dm-Uq4" firstAttribute="top" secondItem="6Ov-hX-tz9" secondAttribute="bottom" id="90x-Gb-kod"/>
+                            <constraint firstItem="A2N-rj-NaR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Wnz-7X-XzU"/>
+                            <constraint firstItem="AyU-Dm-Uq4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="7" id="bUr-UD-mdg"/>
+                            <constraint firstItem="RAx-Mb-BD8" firstAttribute="top" secondItem="6Ov-hX-tz9" secondAttribute="bottom" id="qKL-7H-UQb"/>
+                            <constraint firstItem="eyk-bO-joF" firstAttribute="top" secondItem="A2N-rj-NaR" secondAttribute="bottom" id="s2e-2z-iCN"/>
+                            <constraint firstAttribute="trailing" secondItem="A2N-rj-NaR" secondAttribute="trailing" id="zc8-fb-F7y"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bottomLayout" destination="s2e-2z-iCN" id="73s-nU-LP0"/>
+                        <outlet property="textField" destination="AyU-Dm-Uq4" id="Fow-PQ-d3O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="167.19999999999999" y="-489.80509745127438"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Mircea" width="889" height="890"/>
+    </resources>
 </document>
