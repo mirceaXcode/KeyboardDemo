@@ -24,12 +24,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // NSNotificationCenter is the place in iOS that broadcast information of what's going to the phone, of which your app might want to grab some
+    // Getting a connection to the Notification Center itself
     NSNotificationCenter *ctr = [NSNotificationCenter defaultCenter];
+    // Getting notified when the Keyboard will Show and run the function specified in the selector
     [ctr addObserver:self selector:@selector(moveKeyboardInResponseToWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
-    
-     [ctr addObserver:self selector:@selector(moveKeyboardInResponseToWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
+    // Getting notified if the keyboard is hidden and run the function specified in the selector when the keyboard is about to hide
+    [ctr addObserver:self selector:@selector(moveKeyboardInResponseToWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
 }
 
+// Deregister from the NotificationCenter by deallocating the memory, when the object gets destroyed
 -(void) dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
@@ -40,33 +44,33 @@
 
 -(void) moveKeyboardInResponseToWillShowNotification:(NSNotification *) notification {
     
+    // Getting information fromt he notification, we are particullary intrested in the keyboard, where the keybpard is.
     NSDictionary *info = [notification userInfo];
+    
+    // Declare a keyboard and get information of where it is
     CGRect kbRect;
+    kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
     
-    if([notification.name isEqualToString:UIKeyboardWillShowNotification]){
-        kbRect = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue];
-    } else {
-        kbRect = CGRectZero;
-    }
-    
+    // Getting information about the animation that is happening with the keybboard, how long does it take to come up and whats the shape of it
     CGFloat duration = [[info objectForKey:UIKeyboardAnimationCurveUserInfoKey] floatValue];
     UIViewAnimationCurve curve = [[info objectForKey:UIKeyboardAnimationCurveUserInfoKey] integerValue];
     
+    // Finish constructing the autolayout and any annimation that is in process(laying out the UI), so we can go ahead and create our own
     [self.view layoutSubviews];
     
-    //Animate
+    // Begin the Animation!
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:duration];
     [UIView setAnimationCurve:curve];
+    // If there is any other animation goin on, stop that and begin this one, we want to take over the Animation
     [UIView setAnimationBeginsFromCurrentState:true];
     
-//    UIScrollView *scrollView;
-//    scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top, scrollView.contentInset.left, MAX(kbRect.size.height, scrollView.contentInset.bottom), scrollView.contentInset.right);
-    
+    // We are setting the bottom layout of our View to the hight of the keyboard, so the image/text window will resize and include the keyboard bellow
     self.bottomLayout.constant = kbRect.size.height;
     
     [self.view layoutSubviews];
     
+    // Go ahead and animate the process
     [UIView commitAnimations];
 }
 
